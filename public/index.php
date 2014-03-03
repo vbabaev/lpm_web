@@ -27,7 +27,8 @@ $app->get('/', function(Request $request, Application $app) {
     if ($period < 1) $period = 4;
     $period *= 60 * 60;
     $start_time = time() - $period;
-    $end_time = time();
+    $start_time = intval($start_time / 30) * 30;
+    $end_time = time() - 60;
     $step = $period / 50;
     $cpu_values = [];
     $mem_values = [];
