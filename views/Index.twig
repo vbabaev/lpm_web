@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>linux performance monitor</title>
+    </head>
+    <body>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/js/highcharts.js"></script>
+	<script src="/js/modules/exporting.js"></script>
+    <dl>
+        <dt>Period</dt>
+        <dd>{{ period / (60 * 60)}} <b>h</b> </dd>
+    </dl>
+	<script>
+
+$(function(){
+    $('#container').highcharts({
+        chart: { type: "line" },
+        title: { text: "linux performance graph" },
+        xAxis: {
+            type: "datetime"
+        },
+        yAxis: [{
+            title: {text: "percentage"},
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }],
+            min: 0,
+            type: 'linear'
+        }, {
+            title: {text: "iops"},
+            opposite: true,
+            min: 0
+        }],
+        series: [{
+            yAxis: 0,
+            name: 'cpu',
+            data: {{json_cpu_array|raw}}
+        }, {
+            yAxis: 0,
+            name: 'mem',
+            data: {{json_mem_array|raw}}
+        }, {
+            yAxis: 0,
+            name: 'swap',
+            data: {{json_swap_array|raw}}
+        }, {
+            yAxis: 1,
+            name: 'io',
+            data: {{json_io_array|raw}}
+        }]
+
+
+    });
+});
+	</script>
+
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </body>
+</html>
