@@ -7,9 +7,15 @@
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="/js/highcharts.js"></script>
 	<script src="/js/modules/exporting.js"></script>
-    <dl>
-        <dt>Period</dt>
-        <dd>{{ period / (60 * 60)}} <b>h</b> </dd>
+    <p>
+        {% set h_period = period / (60 * 60) %}
+        <b>period</b>
+        {% if h_period == 1 %} <b>1</b> {% else %} <a href="?period=1">1</a>{% endif %} &nbsp;
+        {% if h_period == 2 %} <b>2</b> {% else %} <a href="?period=2">2</a>{% endif %} &nbsp;
+        {% if h_period == 4 %} <b>4</b> {% else %} <a href="?period=4">4</a>{% endif %} &nbsp;
+        {% if h_period == 8 %} <b>8</b> {% else %} <a href="?period=8">8</a>{% endif %} &nbsp;
+        {% if h_period == 12 %} <b>12</b> {% else %} <a href="?period=12">12</a>{% endif %} &nbsp;
+        {% if h_period == 24 %} <b>24</b> {% else %} <a href="?period=24">24</a>{% endif %} &nbsp;
     </dl>
 	<script>
 
